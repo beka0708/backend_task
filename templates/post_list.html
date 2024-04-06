@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post List</title>
+</head>
+<body>
+    <h1>Post List</h1>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.title }}</li>
+            <a href="/posts/{{post.id}}">Подробнее</a>
+        {% endfor %}
+        <br>
+        <button type="button"><a href="/create_post/">Добавить новый пост</a></button>
+    </ul>
+</body>
+</html>

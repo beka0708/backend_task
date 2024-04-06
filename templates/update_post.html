@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+    <h1 align="center">Изменение данных поста</h1>
+  <form class="railway" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Добавить</button>
+    <i class="fa fa-train" aria-hidden="true"></i><br>
+  </form>
+</body>
+</html>

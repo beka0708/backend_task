@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1 align="center">Добавление нового поста</h1>
+  <form action="/create_post/" class="railway" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Добавить</button>
+    <i class="fa fa-train" aria-hidden="true"></i><br>
+  </form>
+        <script>
+
+const socket = new WebSocket('ws://http://127.0.0.1:8000/ws/posts/');
+
+socket.onopen = function() {
+    console.log('WebSocket connected');
+};
+
+socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    if (data.type === 'alert') {
+        alert(data.message);
+    }
+};
+
+socket.onclose = function() {
+    console.log('WebSocket disconnected');
+};
+
+
+        </script>
+</body>
+</html>

@@ -3,8 +3,9 @@ from django.db import models
 
 class User(models.Model):
     """
-        Абстрактно аутентифицированные пользователи
+    Абстрактно аутентифицированные пользователи
     """
+
     name = models.CharField(max_length=100)
 
     class Meta:
@@ -17,9 +18,10 @@ class User(models.Model):
 
 class Profile(models.Model):
     """
-        Профиль пользователя
+    Профиль пользователя
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     description = models.TextField()
 
     class Meta:
@@ -32,8 +34,9 @@ class Profile(models.Model):
 
 class HashTag(models.Model):
     """
-        Хэштеги для всех постов
+    Хэштеги для всех постов
     """
+
     name = models.CharField(max_length=100, null=True)
 
     class Meta:
@@ -46,13 +49,14 @@ class HashTag(models.Model):
 
 class Post(models.Model):
     """
-        Пост от пользователей
+    Пост от пользователей
     """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hashtag = models.ManyToManyField(HashTag, blank=True, null=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='')
+    image = models.ImageField(upload_to="")
     created_date = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -74,10 +78,13 @@ STARS = (
 
 class Review(models.Model):
     """
-        Отзывы от пользователей
+    Отзывы от пользователей
     """
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='reviews')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews_user')
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="reviews")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="reviews_user"
+    )
     text = models.TextField()
     stars = models.CharField(max_length=100, choices=STARS)
 

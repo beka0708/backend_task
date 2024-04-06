@@ -6,23 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_alter_review_stars'),
+        ("main", "0002_alter_review_stars"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HashTag',
+            name="HashTag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, null=True)),
             ],
         ),
         migrations.AddField(
-            model_name='post',
-            name='hashtag',
-            field=models.ManyToManyField(blank=True, null=True, to='main.hashtag'),
+            model_name="post",
+            name="hashtag",
+            field=models.ManyToManyField(blank=True, null=True, to="main.hashtag"),
         ),
         migrations.DeleteModel(
-            name='Friends',
+            name="Friends",
         ),
     ]
